@@ -5,7 +5,11 @@ public class Console {
     public static String getStringInput(String prompt) {
         System.out.println(prompt);
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        try {
+        	return scanner.nextLine();
+        } finally {
+        	scanner.close();
+        }
     }
 
     public static Double getDoubleInput(String prompt) {

@@ -37,7 +37,7 @@ public class SnakesAndLadders {
 		ArrayList<Integer> dice = rollDice();
 		Integer sumOfRoll = dice.get(0) + dice.get(1);
 		movePlayer(sumOfRoll);
-		if (currentRoller.currentTile == 100) {
+		if (currentRoller.getCurrentTile() == 100) {
 			winner = currentRoller;
 			Display.winner(currentRoller.getName());
 		} else if (rolledDoubles(dice.get(0), dice.get(1))) {
@@ -70,28 +70,28 @@ public class SnakesAndLadders {
 		ArrayList<Integer> dice = new ArrayList<Integer>();
 		dice.add(die.rollDie());
 		dice.add(die.rollDie());
-		Display.rolling(currentRoller.getName(), currentRoller.currentTile, dice.get(0), dice.get(1));
+		Display.rolling(currentRoller.getName(), currentRoller.getCurrentTile(), dice.get(0), dice.get(1));
 		return dice;
 	}
 	
 	public void movePlayer(Integer roll) {
-		Integer previousTile = currentRoller.currentTile;
-		if (currentRoller.currentTile + roll > 100) {
+		Integer previousTile = currentRoller.getCurrentTile();
+		if (currentRoller.getCurrentTile() + roll > 100) {
 			Display.over100(currentRoller.getName());
-			currentRoller.currentTile = 100 - (currentRoller.currentTile + roll - 100);
-			checkForSpecial(currentRoller.currentTile);
+			currentRoller.setCurrentTile(100 - (currentRoller.getCurrentTile() + roll - 100));
+			checkForSpecial(currentRoller.getCurrentTile());
 			Display.moving(currentRoller.getName(), previousTile, currentRoller.getCurrentTile());
 		} else {
-			currentRoller.currentTile += roll;
-			checkForSpecial(currentRoller.currentTile);
+			currentRoller.setCurrentTile(currentRoller.getCurrentTile() + roll);
+			checkForSpecial(currentRoller.getCurrentTile());
 			Display.moving(currentRoller.getName(), previousTile, currentRoller.getCurrentTile());
 		}
 	}
 	
 	public void checkForSpecial(Integer tile) {
 		if (specialTiles.containsKey(tile)) {
-			currentRoller.currentTile = specialTiles.get(tile);
-			Display.landedOnSpecial(currentRoller.getName(), tile, currentRoller.currentTile);
+			currentRoller.setCurrentTile(specialTiles.get(tile));
+			Display.landedOnSpecial(currentRoller.getName(), tile, currentRoller.getCurrentTile());
 		}
 	}
 	

@@ -1,8 +1,8 @@
 package robkruzel;
 
 public class Player {
-	String name;
-	Integer currentTile;
+	private String name;
+	private Integer currentTile;
 	
 	public Player(String name) {
 		super();

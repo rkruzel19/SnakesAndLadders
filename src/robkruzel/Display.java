@@ -1,7 +1,5 @@
 package robkruzel;
 
-import java.io.IOException;
-
 public class Display {
 	
 	public static Integer welcome() {
